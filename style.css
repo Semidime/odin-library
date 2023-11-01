@@ -19,9 +19,9 @@ th {
   text-align: left;
 }
 
-tr>th:nth-child(3),
 tr>th:nth-child(4),
-tr>th:nth-child(5)  {
+tr>th:nth-child(5),
+tr>th:nth-child(6)  {
   text-align: right;
 }
 
@@ -29,9 +29,9 @@ td {
   text-align: left;
 }
 
-tr>td:nth-child(3),
 tr>td:nth-child(4),
-tr>td:nth-child(5) {
+tr>td:nth-child(5),
+tr>td:nth-child(6) {
   text-align: right;
 }
 
