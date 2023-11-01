@@ -52,3 +52,18 @@ addBookToLibrary("Great Expectations", "Charles Dickens", 500, "Y", 3.5,"Lower y
 addBookToLibrary("War and Peace", "Leo Tolstoy", 1000, "N", "N/A","Maybe one day.")
 addBookToLibrary("The DaVinci Code", "Dan Brown", 400, "Y", 0.5,"It is really shit.")
 publishLibrary()
+
+
+const dialog = document.getElementById("addBookDialog");
+const openDialogButton = document.getElementById("openDialogButton");
+const closeDialogButton = document.getElementById("closeDialogButton");
+
+// openDialogButton opens the dialog modally
+openDialogButton.addEventListener("click", () => {
+  dialog.showModal();
+});
+
+// closeDialogButton closes the dialog
+closeDialogButton.addEventListener("click", () => {
+  dialog.close();
+});
