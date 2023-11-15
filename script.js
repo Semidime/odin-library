@@ -28,7 +28,6 @@ function publishLibrary() {
   tableBody.innerHTML = ""; //clears current rows from tableBody
 
   for (let i = 0;  i < bookCount; i++) {
-    //let tableBody = document.getElementById("libraryTable").getElementsByTagName("tbody")[0];
     let newRow = tableBody.insertRow(-1);
 
     let c1 = newRow.insertCell(0);
@@ -38,6 +37,7 @@ function publishLibrary() {
     let c5 = newRow.insertCell(4);
     let c6 = newRow.insertCell(5);
     let c7 = newRow.insertCell(6);
+    let c8 = newRow.insertCell(7);
 
     c1.innerHTML = myLibrary[i].reference;
     c2.innerHTML = myLibrary[i].title;
@@ -46,9 +46,41 @@ function publishLibrary() {
     c5.innerHTML = myLibrary[i].read;
     c6.innerHTML = myLibrary[i].rating;
     c7.innerHTML = myLibrary[i].notes;    
+    
+    //C8 - add Button elements
+    //DELETE BTN
+    let deleteBtn = document.createElement("BUTTON");
+    deleteBtn.setAttribute("id", `DEL_${myLibrary[i].reference}`);
+    deleteBtn.setAttribute("data-index",i);
+    deleteBtn.setAttribute("class","deleteBtn");
+
+    let deleteBtnTxt = document.createTextNode("Delete");
+    deleteBtn.appendChild(deleteBtnTxt);
+    c8.appendChild(deleteBtn);
+
+    //TOGGLE READ STATUS
+    let readBtn = document.createElement("BUTTON");
+    readBtn.setAttribute("id", `READ_${myLibrary[i].reference}`);
+    readBtn.setAttribute("data-index",i);
+    readBtn.setAttribute("class","readBtn");
+    let readBtnTxt = document.createTextNode("Read (Y/N)");
+    readBtn.appendChild(readBtnTxt);
+    c8.appendChild(readBtn);
   }
 
   console.log(tableBody.rows.length)
+
+  // add event listners to buttons
+  const deleteBtns = document.querySelectorAll('.deleteBtn');
+  deleteBtns.forEach((deleteBtn) => {
+    deleteBtn.addEventListener("click",function () {deleteBook(deleteBtn.getAttribute("data-index"))})
+})
+
+  const readBtns = document.querySelectorAll('.readBtn');
+  readBtns.forEach((readBtn) => {
+    readBtn.addEventListener("click",function () {readStatus(readBtn.getAttribute("data-index"))})
+})
+
 }
 
 addBookToLibrary("Catch 22","Joseph Heller",500,"Y",5,"You have to admit, it is a good catch.")
@@ -80,3 +112,28 @@ newBookForm.addEventListener("submit", (event) => {
   publishLibrary()
   dialog.close();
 }) 
+
+// //DEL button event listener
+// const deleteBtns = document.querySelectorAll('.deleteBtn');
+// deleteBtns.forEach((deleteBtn) => {
+//   deleteBtn.addEventListener("click",function () {deleteBook(deleteBtn.getAttribute("data-index"))})
+// })
+
+
+function deleteBook (indexNum) {
+  console.log(`hello ${indexNum}`);
+  myLibrary.splice(indexNum,1);
+  publishLibrary();
+  console.table(myLibrary)
+}
+
+function readStatus(indexNum) {
+  console.log(`hello ${indexNum}`);
+
+  if (myLibrary[indexNum].read == "Y") {
+    myLibrary[indexNum].read = "N";
+  } else if (myLibrary[indexNum].read == "N") {
+    myLibrary[indexNum].read = "Y";
+  }
+  publishLibrary();
+}
