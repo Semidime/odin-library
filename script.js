@@ -23,9 +23,12 @@ function addBookToLibrary(title,author,pages,read,rating,notes) {
 
 function publishLibrary() {
   const bookCount = myLibrary.length;
+  const tableBody = document.getElementById("libraryTable").getElementsByTagName("tbody")[0];
+
+  tableBody.innerHTML = ""; //clears current rows from tableBody
 
   for (let i = 0;  i < bookCount; i++) {
-    let tableBody = document.getElementById("libraryTable").getElementsByTagName("tbody")[0];
+    //let tableBody = document.getElementById("libraryTable").getElementsByTagName("tbody")[0];
     let newRow = tableBody.insertRow(-1);
 
     let c1 = newRow.insertCell(0);
@@ -44,6 +47,8 @@ function publishLibrary() {
     c6.innerHTML = myLibrary[i].rating;
     c7.innerHTML = myLibrary[i].notes;    
   }
+
+  console.log(tableBody.rows.length)
 }
 
 addBookToLibrary("Catch 22","Joseph Heller",500,"Y",5,"You have to admit, it is a good catch.")
@@ -67,3 +72,11 @@ openDialogButton.addEventListener("click", () => {
 closeDialogButton.addEventListener("click", () => {
   dialog.close();
 });
+
+//submit new book to Library
+newBookForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  addBookToLibrary(title.value,author.value,pages.value,hasRead.value,rating.value,notes.value);
+  publishLibrary()
+  dialog.close();
+}) 
