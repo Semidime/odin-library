@@ -8,18 +8,25 @@ function Book(title,author,pages,read,rating,notes) {
     this.read = read
     this.rating = rating
     this.notes = notes
+
+    //change read status
+    this.toggleReadStatus = function () {
+      console.log(`hello ${this.title}`);
+
+      if (this.read == "Y") {
+        this.read = "N";
+      } else if (this.read == "N") {
+        this.read = "Y";
+      }
+      publishLibrary();
+      console.table(myLibrary)
+    }
 }
 
 function addBookToLibrary(title,author,pages,read,rating,notes) {
   const newBook = new Book(title,author,pages,read,rating,notes);
   myLibrary.push(newBook)
 }
-
-// const theHobbit = new Book("The Hobbit", "J R Tolkien", 250, "Y", 3,"There and back again.");
-// const greatExpectations = new Book("Great Expectations", "Charles Dickens", 500, "Y", 3.5,"Lower your expectations.");
-// const warAndPeace = new Book("War and Peace", "Leo Tolstoy", 1000, "N", "N/A","Maybe one day.");
-// const theDaVinciCode = new Book("The DaVinci Code", "Dan Brown", 400, "Y", 0.5,"It is really shit.")
-// myLibrary.push(theHobbit,greatExpectations,warAndPeace,theDaVinciCode);
 
 function publishLibrary() {
   const bookCount = myLibrary.length;
@@ -53,7 +60,6 @@ function publishLibrary() {
     deleteBtn.setAttribute("id", `DEL_${myLibrary[i].reference}`);
     deleteBtn.setAttribute("data-index",i);
     deleteBtn.setAttribute("class","deleteBtn");
-
     let deleteBtnTxt = document.createTextNode("Delete");
     deleteBtn.appendChild(deleteBtnTxt);
     c8.appendChild(deleteBtn);
@@ -73,13 +79,15 @@ function publishLibrary() {
   // add event listners to buttons
   const deleteBtns = document.querySelectorAll('.deleteBtn');
   deleteBtns.forEach((deleteBtn) => {
-    deleteBtn.addEventListener("click",function () {deleteBook(deleteBtn.getAttribute("data-index"))})
-})
+    deleteBtn.addEventListener("click",() => {
+      deleteBook(deleteBtn.getAttribute("data-index"))
+    })
+  })
 
   const readBtns = document.querySelectorAll('.readBtn');
   readBtns.forEach((readBtn) => {
-    readBtn.addEventListener("click",function () {readStatus(readBtn.getAttribute("data-index"))})
-})
+    readBtn.addEventListener("click",function () {myLibrary[readBtn.getAttribute("data-index")].toggleReadStatus()})
+  })
 
 }
 
@@ -113,27 +121,10 @@ newBookForm.addEventListener("submit", (event) => {
   dialog.close();
 }) 
 
-// //DEL button event listener
-// const deleteBtns = document.querySelectorAll('.deleteBtn');
-// deleteBtns.forEach((deleteBtn) => {
-//   deleteBtn.addEventListener("click",function () {deleteBook(deleteBtn.getAttribute("data-index"))})
-// })
-
-
-function deleteBook (indexNum) {
+//delete book from library
+function deleteBook(indexNum) {
   console.log(`hello ${indexNum}`);
   myLibrary.splice(indexNum,1);
   publishLibrary();
   console.table(myLibrary)
-}
-
-function readStatus(indexNum) {
-  console.log(`hello ${indexNum}`);
-
-  if (myLibrary[indexNum].read == "Y") {
-    myLibrary[indexNum].read = "N";
-  } else if (myLibrary[indexNum].read == "N") {
-    myLibrary[indexNum].read = "Y";
-  }
-  publishLibrary();
 }
