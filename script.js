@@ -1,13 +1,17 @@
 const myLibrary = [];
+let refCounter = 0;
 
 function Book(title,author,pages,read,rating,notes) {
-    this.reference = "NE_"+(myLibrary.length+1).toString().padStart(4,0);
+    this.reference = "SD_"+(refCounter+1).toString().padStart(4,0);
     this.title = title
     this.author = author
     this.pages = pages
     this.read = read
     this.rating = rating
     this.notes = notes
+
+    refCounter += 1;
+    console.log(refCounter);
 
     //change read status
     this.toggleReadStatus = function () {
@@ -93,9 +97,9 @@ function publishLibrary() {
 
 addBookToLibrary("Catch 22","Joseph Heller",500,"Y",5,"You have to admit, it is a good catch.")
 addBookToLibrary("The Hobbit", "J R Tolkien", 250, "Y", 3,"There and back again.")
-addBookToLibrary("Great Expectations", "Charles Dickens", 500, "Y", 3.5,"Lower your expectations.")
+addBookToLibrary("Great Expectations", "Charles Dickens", 500, "Y", 3,"Lower your expectations.")
 addBookToLibrary("War and Peace", "Leo Tolstoy", 1000, "N", "N/A","Maybe one day.")
-addBookToLibrary("The DaVinci Code", "Dan Brown", 400, "Y", 0.5,"It is really shit.")
+addBookToLibrary("The DaVinci Code", "Dan Brown", 400, "Y", 0,"It is really shit.")
 publishLibrary()
 
 
@@ -123,7 +127,7 @@ newBookForm.addEventListener("submit", (event) => {
 
 //delete book from library
 function deleteBook(indexNum) {
-  console.log(`hello ${indexNum}`);
+  console.log(`goodbye ${myLibrary[indexNum].title}`);
   myLibrary.splice(indexNum,1);
   publishLibrary();
   console.table(myLibrary)
