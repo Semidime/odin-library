@@ -19,11 +19,22 @@ function Book(title,author,pages,read,rating,notes) {
 
       if (this.read == "Y") {
         this.read = "N";
+        this.rating = "-";
+        publishLibrary();
       } else if (this.read == "N") {
         this.read = "Y";
+        document.getElementById("updateBookRatingDialog").showModal();
+        
+        updateRatingForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            console.log(`You rated ${this.title} ${updateRatingForm.elements["submitRating"].value} / 5`);
+            this.rating = updateRatingForm.elements["submitRating"].value;
+            publishLibrary();            
+            document.getElementById("updateBookRatingDialog").close();
+          })
+
+        clearUpdateRatingFormInputs();         
       }
-      publishLibrary();
-      console.table(myLibrary)
     }
 }
 
@@ -98,35 +109,29 @@ function publishLibrary() {
 addBookToLibrary("Catch 22","Joseph Heller",500,"Y",5,"You have to admit, it is a good catch.")
 addBookToLibrary("The Hobbit", "J R R Tolkien", 250, "Y", 3,"There and back again.")
 addBookToLibrary("Great Expectations", "Charles Dickens", 500, "Y", 3,"Lower your expectations.")
-addBookToLibrary("War and Peace", "Leo Tolstoy", 1000, "N", "N/A","Maybe one day.")
+addBookToLibrary("War and Peace", "Leo Tolstoy", 1000, "N", "-","Maybe one day.")
 addBookToLibrary("The DaVinci Code", "Dan Brown", 400, "Y", 0,"It is really shit.")
 publishLibrary()
 
 
 const dialog = document.getElementById("addBookDialog");
-const openDialogButton = document.getElementById("openDialogButton");
-const closeDialogButton = document.getElementById("closeDialogButton");
+const openAddBookDialogButton = document.getElementById("openAddBookDialogButton");
+const closeAddBookDialogButton = document.getElementById("closeAddBookDialogButton");
 
 // openDialogButton opens the dialog modally
-openDialogButton.addEventListener("click", () => {
-  dialog.showModal();
+openAddBookDialogButton.addEventListener("click", () => {
+  document.getElementById("addBookDialog").showModal();
 });
 
 // closeDialogButton closes the dialog
-closeDialogButton.addEventListener("click", () => {
-  dialog.close();
+closeAddBookDialogButton.addEventListener("click", () => {
+  document.getElementById("addBookDialog").close();
 });
 
 //submit new book to Library
 newBookForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  let readStatus = "";
-  if (document.getElementById('hasRead').checked == true) {   
-  readStatus = "Y";   
-  } else {  
-  readStatus = "N";   
-  }   
-  addBookToLibrary(title.value,author.value,pages.value,readStatus,rating.value,notes.value);
+  addBookToLibrary(title.value,author.value,pages.value,newBookForm.elements["readBook"].value,rating.value,notes.value);
   publishLibrary()
   dialog.close();
 }) 
@@ -137,4 +142,10 @@ function deleteBook(indexNum) {
   myLibrary.splice(indexNum,1);
   publishLibrary();
   console.table(myLibrary)
+}
+
+function clearUpdateRatingFormInputs () {
+  if (document.querySelector('input[name="submitRating"]:checked') != null) {
+    document.querySelector('input[name="submitRating"]:checked').checked = false
+  }
 }

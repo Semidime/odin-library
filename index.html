@@ -29,7 +29,7 @@
                   <th scope="col">Author</th>
                   <th scope="col">Pages</th>
                   <th scope="col">Read?</th>
-                  <th scope="col">Rating (0-5)</th>
+                  <th scope="col">Rating (1-5)</th>
                   <th scope="col">Notes</th>
                   <th scope="col">Update Library</th>
               </tr>
@@ -46,7 +46,7 @@
 
     <div class="form-container">
         <dialog id="addBookDialog">
-            <button id="closeDialogButton">X</button>
+            <button id="closeAddBookDialogButton">X</button>
             <form action="https://httpbin.org/post" method="post" id="newBookForm">
                 <h1>NEW BOOK!</h1>
                 <div class="form-inputs">
@@ -69,7 +69,7 @@
                                 <fieldset>
                                     <legend>Have you read this book?</legend>
                                         <label for="hasRead">Yes</label>
-                                        <input type="radio" name="readBook" id="hasRead" value="Y">
+                                        <input type="radio" name="readBook" id="hasRead" value="Y" required>
                                         <label for="hasNotRead">No</label>
                                         <input type="radio" name="readBook" id="hasNotRead" value="N">
                                   </fieldset>
@@ -91,7 +91,33 @@
                 </div>
             </form>
         </dialog>
-        <button id="openDialogButton">Add a book!</button>    
+        <button id="openAddBookDialogButton">Add a book!</button>    
+    </div>
+
+    <div class="form-container">
+        <dialog id="updateBookRatingDialog">
+            <button id="closeUpdateBookRatingDialogButton">X</button>
+            <form action="https://httpbin.org/post" method="post" id="updateRatingForm">
+                <h1>PLEASE SUBMIT YOUR RATING</h1>
+                <div class="form-inputs">
+                            <fieldset>
+                                    <label for="rating1">1</label>
+                                    <input type="radio" name="submitRating" id="rating1" value="1" required>
+                                    <label for="rating2">2</label>
+                                    <input type="radio" name="submitRating" id="rating2" value="2">
+                                    <label for="rating3">3</label>
+                                    <input type="radio" name="submitRating" id="rating3" value="3">
+                                    <label for="rating4">4</label>
+                                    <input type="radio" name="submitRating" id="rating4" value="4">
+                                    <label for="rating5">5</label>
+                                    <input type="radio" name="submitRating" id="rating5" value="5">
+                            </fieldset>
+                </div>
+                <div class="form-submit">
+                    <button type="submit" class="submit-btn" id="submitRatingBtn">Rate It!</button>
+                </div>
+            </form>
+        </dialog> 
     </div>
 
 </body>
