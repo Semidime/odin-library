@@ -131,7 +131,7 @@ closeAddBookDialogButton.addEventListener("click", () => {
 //submit new book to Library
 newBookForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  addBookToLibrary(title.value,author.value,pages.value,newBookForm.elements["readBook"].value,rating.value,notes.value);
+  addBookToLibrary(title.value,author.value,pages.value,newBookForm.elements["readBook"].value,newBookForm.elements["newBookRating"].value,notes.value);
   publishLibrary()
   dialog.close();
 }) 
