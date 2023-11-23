@@ -96,7 +96,7 @@ function publishLibrary() {
 }
 
 addBookToLibrary("Catch 22","Joseph Heller",500,"Y",5,"You have to admit, it is a good catch.")
-addBookToLibrary("The Hobbit", "J R Tolkien", 250, "Y", 3,"There and back again.")
+addBookToLibrary("The Hobbit", "J R R Tolkien", 250, "Y", 3,"There and back again.")
 addBookToLibrary("Great Expectations", "Charles Dickens", 500, "Y", 3,"Lower your expectations.")
 addBookToLibrary("War and Peace", "Leo Tolstoy", 1000, "N", "N/A","Maybe one day.")
 addBookToLibrary("The DaVinci Code", "Dan Brown", 400, "Y", 0,"It is really shit.")
@@ -120,7 +120,13 @@ closeDialogButton.addEventListener("click", () => {
 //submit new book to Library
 newBookForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  addBookToLibrary(title.value,author.value,pages.value,hasRead.value,rating.value,notes.value);
+  let readStatus = "";
+  if (document.getElementById('hasRead').checked == true) {   
+  readStatus = "Y";   
+  } else {  
+  readStatus = "N";   
+  }   
+  addBookToLibrary(title.value,author.value,pages.value,readStatus,rating.value,notes.value);
   publishLibrary()
   dialog.close();
 }) 
