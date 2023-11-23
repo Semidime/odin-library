@@ -15,7 +15,7 @@ function Book(title,author,pages,read,rating,notes) {
 
     //change read status
     this.toggleReadStatus = function () {
-      console.log(`hello ${this.title}`);
+      console.log(`Well, hello ${this.author}!`);
 
       if (this.read == "Y") {
         this.read = "N";
@@ -144,6 +144,12 @@ function deleteBook(indexNum) {
   console.table(myLibrary)
 }
 
+// // close UpdateBookDialog
+// closeUpdateBookRatingDialogButton.addEventListener("click", () => {
+//   document.getElementById("updateBookRatingDialog").close();
+// });
+
+//clear checked value from Rating form
 function clearUpdateRatingFormInputs () {
   if (document.querySelector('input[name="submitRating"]:checked') != null) {
     document.querySelector('input[name="submitRating"]:checked').checked = false
