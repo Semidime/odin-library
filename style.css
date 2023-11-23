@@ -58,7 +58,9 @@ caption {
 .form-container h1 {
   font-size: 1rem;
 
-}.form-inputs {
+}
+
+.form-inputs {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -66,7 +68,8 @@ caption {
   gap: 10px;
 }
 
-.form-inputs label {
+.form-inputs label,
+.form-inputs > div {
   font-size: 0.5rem;
 }
 
@@ -74,8 +77,32 @@ caption {
   padding: 0.1rem;
   font-size: 0.7rem;
   width: clamp(150px, 20vw, 400px);
+  height: 1rem;
   border: 2px solid #E5E7EB;
   border-radius: 5px;
+}
+
+.form-inputs input[type=radio] {
+  width: 20px;
+  height: 1rem;
+  padding: 0px;
+  margin: 0px;
+}
+
+.form-inputs fieldset {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding: 0.1rem;
+  font-size: 0.7rem;
+  width: clamp(150px, 20vw, 400px);
+  height: 1rem;
+  border: none;
+}
+
+.radio-group {
+  display: flex;
+  align-items: center;
 }
 
 .input-group1,

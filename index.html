@@ -66,13 +66,17 @@
                                 <input type="number" name="pages" id="pages" required>
                             </div>
                             <div class="form-group">
+                                <div>Have you read this book? *</div>
                                 <fieldset>
-                                    <legend>Have you read this book?</legend>
-                                        <label for="hasRead">Yes</label>
-                                        <input type="radio" name="readBook" id="hasRead" value="Y" required>
-                                        <label for="hasNotRead">No</label>
-                                        <input type="radio" name="readBook" id="hasNotRead" value="N">
-                                  </fieldset>
+                                        <div class="radio-group">
+                                            <label for="hasRead">Yes:</label>
+                                            <input type="radio" name="readBook" id="hasRead" value="Y" required>
+                                        </div>
+                                        <div class="radio-group">
+                                            <label for="hasNotRead">No:</label>
+                                            <input type="radio" name="readBook" id="hasNotRead" value="N">
+                                        </div>
+                                </fieldset>
                             </div>
                         </div>
                         <div class="input-group3">
