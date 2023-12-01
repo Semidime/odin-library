@@ -20,7 +20,8 @@
                 <col style="width:50px;">
                 <col style="width:50px;">
                 <col style="width:100px;">
-                <col style="width:200px;">
+                <col style="width:50px;">
+                <col style="width:50px;">
               </colgroup>
             <thead>
               <tr>
@@ -31,14 +32,15 @@
                   <th scope="col">Read?</th>
                   <th scope="col">Rating (1-5)</th>
                   <th scope="col">Notes</th>
-                  <th scope="col">Update Library</th>
+                  <th scope="col">Delete Book</th>
+                  <th scope="col">Toggle Read Status</th>
               </tr>
             </thead>
             <tbody>
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="8" id="tableFooter">That's all folks!</td>
+                    <td colspan="9" id="tableFooter">That's all folks!</td>
                 </tr>
             </tfoot>
         </table>
@@ -69,11 +71,11 @@
                                 <div>Have you read this book? *</div>
                                 <fieldset id="read-book-radio-groups">
                                         <div class="radio-group">
-                                            <label for="hasRead">Yes:</label>
+                                            <label for="hasRead">Yes:&nbsp;</label>
                                             <input type="radio" name="readBook" id="hasRead" value="Y" required>
                                         </div>
                                         <div class="radio-group">
-                                            <label for="hasNotRead">No:</label>
+                                            <label for="hasNotRead">No:&nbsp;</label>
                                             <input type="radio" name="readBook" id="hasNotRead" value="N">
                                         </div>
                                 </fieldset>
@@ -84,23 +86,27 @@
                                 <div>Rating *</div>
                                 <fieldset>
                                     <div class="radio-group">
-                                        <label for="newBookRating1">1:</label>
+                                        <label for="newBookRating5">N/A:&nbsp;</label>
+                                        <input type="radio" name="newBookRating" id="newBookRatingNA" value="N/A">
+                                    </div>
+                                    <div class="radio-group">
+                                        <label for="newBookRating1">1:&nbsp;</label>
                                         <input type="radio" name="newBookRating" id="newBookRating1" value="1" required>
                                     </div>
                                     <div class="radio-group">
-                                        <label for="newBookRating2">2:</label>
+                                        <label for="newBookRating2">2:&nbsp;</label>
                                         <input type="radio" name="newBookRating" id="newBookRating2" value="2">
                                     </div>
                                     <div class="radio-group">
-                                        <label for="newBookRating3">3:</label>
+                                        <label for="newBookRating3">3:&nbsp;</label>
                                         <input type="radio" name="newBookRating" id="newBookRating3" value="3">
                                     </div>
                                     <div class="radio-group">
-                                        <label for="newBookRating4">4:</label>
+                                        <label for="newBookRating4">4:&nbsp;</label>
                                         <input type="radio" name="newBookRating" id="newBookRating4" value="4">
                                     </div>
                                     <div class="radio-group">
-                                        <label for="newBookRating5">5:</label>
+                                        <label for="newBookRating5">5:&nbsp;</label>
                                         <input type="radio" name="newBookRating" id="newBookRating5" value="5">
                                     </div>
                             </fieldset>
@@ -126,26 +132,30 @@
                 <h1>Please submit your rating</h1>
                 <div class="form-inputs">
                             <fieldset>
-                                    <div class="radio-group">
-                                        <label for="rating1">1:</label>
-                                        <input type="radio" name="submitRating" id="rating1" value="1" required>
-                                    </div>
-                                    <div class="radio-group">
-                                        <label for="rating2">2:</label>
-                                        <input type="radio" name="submitRating" id="rating2" value="2">
-                                    </div>
-                                    <div class="radio-group">
-                                        <label for="rating3">3:</label>
-                                        <input type="radio" name="submitRating" id="rating3" value="3">
-                                    </div>
-                                    <div class="radio-group">
-                                        <label for="rating4">4:</label>
-                                        <input type="radio" name="submitRating" id="rating4" value="4">
-                                    </div>
-                                    <div class="radio-group">
-                                        <label for="rating5">5:</label>
-                                        <input type="radio" name="submitRating" id="rating5" value="5">
-                                    </div>
+                                <div class="radio-group">
+                                    <label for="newBookRating5">N/A:&nbsp;</label>
+                                    <input type="radio" name="submitRating" id="ratingNA" value="N/A" required>
+                                </div>
+                                <div class="radio-group">
+                                    <label for="rating1">1:&nbsp;</label>
+                                    <input type="radio" name="submitRating" id="rating1" value="1">
+                                </div>
+                                <div class="radio-group">
+                                    <label for="rating2">2:&nbsp;</label>
+                                    <input type="radio" name="submitRating" id="rating2" value="2">
+                                </div>
+                                <div class="radio-group">
+                                    <label for="rating3">3:&nbsp;</label>
+                                    <input type="radio" name="submitRating" id="rating3" value="3">
+                                </div>
+                                <div class="radio-group">
+                                    <label for="rating4">4:&nbsp;</label>
+                                    <input type="radio" name="submitRating" id="rating4" value="4">
+                                </div>
+                                <div class="radio-group">
+                                    <label for="rating5">5:&nbsp;</label>
+                                    <input type="radio" name="submitRating" id="rating5" value="5">
+                                </div>
                             </fieldset>
                 </div>
                 <div class="form-submit">
