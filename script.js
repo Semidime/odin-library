@@ -19,7 +19,7 @@ function Book(title,author,pages,read,rating,notes) {
 
       if (this.read == "Y") {
         this.read = "N";
-        this.rating = "-";
+        this.rating = "N/A";
         publishLibrary();
       } else if (this.read == "N") {
         this.read = "Y";
@@ -27,13 +27,14 @@ function Book(title,author,pages,read,rating,notes) {
         
         updateRatingForm.addEventListener("submit", (event) => {
             event.preventDefault();
-            console.log(`You rated ${this.title} ${updateRatingForm.elements["submitRating"].value} / 5`);
+            console.log(`You rated ${this.title} ${updateRatingForm.elements["submitRating"].value}`);
             this.rating = updateRatingForm.elements["submitRating"].value;
             publishLibrary();            
             document.getElementById("updateBookRatingDialog").close();
           })
 
-        clearUpdateRatingFormInputs();         
+        //clearUpdateRatingFormInputs(); 
+        document.getElementById("updateRatingForm").reset();        
       }
     }
 }
@@ -60,6 +61,7 @@ function publishLibrary() {
     let c6 = newRow.insertCell(5);
     let c7 = newRow.insertCell(6);
     let c8 = newRow.insertCell(7);
+    let c9 = newRow.insertCell(8);
 
     c1.innerHTML = myLibrary[i].reference;
     c2.innerHTML = myLibrary[i].title;
@@ -69,7 +71,7 @@ function publishLibrary() {
     c6.innerHTML = myLibrary[i].rating;
     c7.innerHTML = myLibrary[i].notes;    
     
-    //C8 - add Button elements
+    //Add Button elements
     //DELETE BTN
     let deleteBtn = document.createElement("BUTTON");
     deleteBtn.setAttribute("id", `DEL_${myLibrary[i].reference}`);
@@ -86,7 +88,7 @@ function publishLibrary() {
     readBtn.setAttribute("class","readBtn");
     let readBtnTxt = document.createTextNode("Read (Y/N)");
     readBtn.appendChild(readBtnTxt);
-    c8.appendChild(readBtn);
+    c9.appendChild(readBtn);
   }
 
   console.log(tableBody.rows.length)
@@ -109,7 +111,7 @@ function publishLibrary() {
 addBookToLibrary("Catch 22","Joseph Heller",500,"Y",5,"You have to admit, it is a good catch.")
 addBookToLibrary("The Hobbit", "J R R Tolkien", 250, "Y", 3,"There and back again.")
 addBookToLibrary("Great Expectations", "Charles Dickens", 500, "Y", 3,"Lower your expectations.")
-addBookToLibrary("War and Peace", "Leo Tolstoy", 1000, "N", "-","Maybe one day.")
+addBookToLibrary("War and Peace", "Leo Tolstoy", 1000, "N", "N/A","Maybe one day.")
 addBookToLibrary("The DaVinci Code", "Dan Brown", 400, "Y", 0,"It is really shit.")
 publishLibrary()
 
@@ -132,7 +134,8 @@ closeAddBookDialogButton.addEventListener("click", () => {
 newBookForm.addEventListener("submit", (event) => {
   event.preventDefault();
   addBookToLibrary(title.value,author.value,pages.value,newBookForm.elements["readBook"].value,newBookForm.elements["newBookRating"].value,notes.value);
-  publishLibrary()
+  publishLibrary();
+  document.getElementById("newBookForm").reset();
   dialog.close();
 }) 
 
@@ -150,8 +153,8 @@ function deleteBook(indexNum) {
 // });
 
 //clear checked value from Rating form
-function clearUpdateRatingFormInputs () {
-  if (document.querySelector('input[name="submitRating"]:checked') != null) {
-    document.querySelector('input[name="submitRating"]:checked').checked = false
-  }
-}
+// function clearUpdateRatingFormInputs () {
+//   if (document.querySelector('input[name="submitRating"]:checked') != null) {
+//     document.querySelector('input[name="submitRating"]:checked').checked = false
+//   }
+// }
